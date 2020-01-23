@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AddEditTableViewController.swift
 //  TodoList
 //
 //  Created by 원현식 on 2020/01/23.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AddEditTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
     }
 
+   
 
 }
-
