@@ -23,7 +23,6 @@ class TodoListTableViewController: UITableViewController {
         
         //편집 모드에서 multi selection 가능하게 선택 동그라미 나옴.
         tableView.allowsMultipleSelectionDuringEditing = true
-        
     }
     
     // MARK: - Table view data source
@@ -102,5 +101,50 @@ class TodoListTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditItemSegue" {
+            if let addEditTableViewController = segue.destination as? AddEditTableViewController {
+                if let cell = sender as? TodoListTableViewCell,
+                    let indexPath = tableView.indexPath(for: cell){
+                    let item = todos[indexPath.row]
+                    addEditTableViewController.itemToEdit = item
+                    addEditTableViewController.delegate = self
+                    
+                }
+            }
+        } else if segue.identifier == "AddItemSegue" {
+            if let addEditTableViewController = segue.destination as? AddEditTableViewController {
+                addEditTableViewController.delegate = self
+
+            }
+        }
+    }
+    
+    
+}
+
+// MARK: - extension
+extension TodoListTableViewController: AddEditTableViewControllerDelegate {
+    func addEditTableViewcontroller(controller: AddEditTableViewController, didFinishingAdding item: TodoItem) {
+        navigationController?.popViewController(animated: true)
+        
+        todos.append(item)
+        tableView.reloadData()
+        
+    }
+    
+    func addEditTableViewcontroller(controller: AddEditTableViewController,beforeEditing oldItem : TodoItem,didFinishingEditing newItem : TodoItem) {
+        
+        navigationController?.popViewController(animated: true)
+        
+        for todo in todos {
+            if todo === oldItem {
+                todo.text = newItem.text
+            }
+        }
+        
+        tableView.reloadData()
+    }
     
 }

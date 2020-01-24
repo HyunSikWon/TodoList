@@ -16,20 +16,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TodoCell" id="JxW-Tr-7fc" customClass="TodoListTableViewCell" customModule="TodoList" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JxW-Tr-7fc" id="5Bq-9f-5t8">
-                                    <rect key="frame" x="0.0" y="0.0" width="351" height="44.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="351" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMv-7g-NFc">
-                                            <rect key="frame" x="41.5" y="11" width="42" height="21.5"/>
+                                            <rect key="frame" x="41.5" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK5-d9-VXQ">
-                                            <rect key="frame" x="13" y="11" width="14.5" height="22"/>
+                                            <rect key="frame" x="13" y="11" width="14.5" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -98,18 +98,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D8f-lV-cvd">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D8f-lV-cvd">
                                                     <rect key="frame" x="20" y="4" width="374" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="kcf-hb-xRI" id="U7u-RA-wV3"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="D8f-lV-cvd" secondAttribute="trailing" constant="20" id="I0E-SG-fBP"/>
-                                                <constraint firstItem="D8f-lV-cvd" firstAttribute="top" secondItem="oZr-dl-nwZ" secondAttribute="top" constant="4" id="IFI-Ye-nzE"/>
-                                                <constraint firstAttribute="bottom" secondItem="D8f-lV-cvd" secondAttribute="bottom" constant="4" id="hZs-Me-J6G"/>
-                                                <constraint firstItem="D8f-lV-cvd" firstAttribute="leading" secondItem="oZr-dl-nwZ" secondAttribute="leading" constant="20" id="x5e-VR-tcv"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -121,8 +119,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="nDU-Nh-7pP">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="1gq-of-MT7"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="1gq-of-MT7">
+                            <connections>
+                                <action selector="done:" destination="kcf-hb-xRI" id="oTg-uA-u5y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="1gq-of-MT7" id="hyf-g2-rHT"/>
+                        <outlet property="textField" destination="D8f-lV-cvd" id="ftn-os-3Gq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fC-XL-wKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
